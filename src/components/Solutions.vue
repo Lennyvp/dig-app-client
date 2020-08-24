@@ -1,6 +1,7 @@
 <template>
   <v-container fluid>
             <v-row v-for="solution in solutions" :key="solution.id">
+              <!-- {{ solution }} -->
               <v-col v-for="sol in solution" :key="sol.id">
                 {{sol}}
               </v-col>
