@@ -13,7 +13,8 @@
             v-for="(inputValue, index) in inputValues"
             :key="index"
             :inputValue="inputValue"
-            @click="removeValue(index)"
+            :index="index"
+            v-on:removeValue="removeValue(index)"
           />
         </v-chip-group>
         <!-- </v-sheet> -->
@@ -31,7 +32,7 @@ export default {
   name: "InputValues",
   props: ["inputValues"],
   data: () => ({
-    item: 0,
+    inputValue: null,
   }),
   components: {
     ChipInputValue,
@@ -44,10 +45,10 @@ export default {
     addValue() {
       this.inputValues.push(this.inputValue);
     },
-    removeValue(value) {
-        console.log(value)
-        // this.inputValues = this.inputValues.filter(v => !value.includes(v))
-        this.inputValues.slice(value, 1)
+    removeValue(index) {
+      console.log(index)
+        this.inputValues.splice(index - 1, 1)
+        console.log(this.inputValues)
     },
     resetValues() {
         this.inputValues = []

@@ -14,13 +14,13 @@
 <script>
 export default {
     name: "ChipInputValue",
-    props: ['inputValue'],
+    props: ['inputValue', "index"],
     data: () => ({
         chip: true,
     }),
     methods: {
       removeChip() {
-        // this.$emit("removeValue", this.inputValue)
+        this.$emit("removeValue", this.inputValue)
         this.chip = false
       }
     }
