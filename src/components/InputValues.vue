@@ -10,11 +10,10 @@
 
         <v-chip-group column active-class="primary--text">
           <ChipInputValue
-            v-for="(inputValue, index) in inputValues"
-            :key="index"
-            :inputValue="inputValue"
-            :index="index"
-            v-on:removeValue="removeValue(index)"
+            v-for="value in inputValues"
+            :key="value.id"
+            :inputValue="value"
+            v-on:removeValue="removeValue(value)"
           />
         </v-chip-group>
         <!-- </v-sheet> -->
@@ -32,6 +31,7 @@ export default {
   name: "InputValues",
   props: ["inputValues"],
   data: () => ({
+    id: null,
     inputValue: null,
   }),
   components: {
@@ -43,12 +43,14 @@ export default {
     },
     addNewChip() {},
     addValue() {
-      this.inputValues.push(this.inputValue);
+      this.inputValues.push({
+        id: this.id,
+        value: this.inputValue
+        });
+        this.id++;
     },
-    removeValue(index) {
-      console.log(index)
-        this.inputValues.splice(index - 1, 1)
-        console.log(this.inputValues)
+    removeValue(inputValue) {
+        this.inputValues.splice(this.inputValues.indexOf(inputValue), 1)
     },
     resetValues() {
         this.inputValues = []

@@ -40,10 +40,10 @@ export default {
     // outputData: [],
     inputData: [],
     inputString: "",
-    groups: 0,
-    size: 0,
+    groups: null,
+    size: null,
     deviation: 0.15,
-    inputValue: 0,
+    inputValue: null,
     inputValues: [],
   }),
   components: {
@@ -58,7 +58,7 @@ export default {
           groups: this.groups,
           size: this.size,
           // values: [1.0, 1.0, 2.0, 3.0, 5.0, 5.0, 7.0, 8.0, 9.0],
-          values: this.inputValues,
+          values: this.inputValues.values,
           deviation: this.deviation
         })
         .then((response) => {
