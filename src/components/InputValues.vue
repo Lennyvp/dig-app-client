@@ -5,7 +5,7 @@
         <v-text-field label="Value" outlined v-model="inputValue" v-on:keyup.enter="addValue"></v-text-field>
       </v-col>
       <v-col cols="5" md="1" ml="1" lg="1">
-        <v-text-field label="Search" outlined clearable></v-text-field>
+        <v-text-field label="Search" outlined clearable v-model="searchValue" ></v-text-field>
       </v-col>
     </v-row>
 
@@ -14,7 +14,7 @@
         <v-card v-if="inputValues.length">
           <v-chip-group column active-class="primary--text">
             <ChipInputValue
-              v-for="value in inputValues"
+              v-for="value in searchValues"
               :key="value.id"
               :inputValue="value"
               v-on:removeValue="removeValue(value)"
@@ -38,44 +38,7 @@ export default {
   data: () => ({
     id: 0,
     inputValue: null,
-    exampleData: [
-      {
-        id: 0,
-        value: 1.0,
-      },
-      {
-        id: 1,
-        value: 1.0,
-      },
-      {
-        id: 2,
-        value: 2.0,
-      },
-      {
-        id: 3,
-        value: 3.0,
-      },
-      {
-        id: 4,
-        value: 5.0,
-      },
-      {
-        id: 5,
-        value: 5.0,
-      },
-      {
-        id: 6,
-        value: 7.0,
-      },
-      {
-        id: 7,
-        value: 8.0,
-      },
-      {
-        id: 8,
-        value: 9.0,
-      },
-    ],
+    searchValue: null,
   }),
   components: {
     ChipInputValue,
@@ -99,5 +62,12 @@ export default {
       this.$emit("updateValues", this.inputValues);
     }
   },
+  computed: {
+    searchValues() {
+      return this.inputValues.filter(input => {
+        return input.value.match(this.searchValue)
+      })
+    }
+  }
 };
 </script>

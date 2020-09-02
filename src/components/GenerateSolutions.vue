@@ -22,18 +22,12 @@
         </v-col>
       </v-row>
     </v-card>
-
-    <!-- <div>{{ inputString }}</div>
-
-    <div class="mt-10">
-      <v-text-field label="Main input" hide-details="auto" v-model="inputString"></v-text-field>
-    </div>-->
+    
     <InputValues :inputValues="inputValues" v-on:updateValues="updateValues(event)" />
 
     <v-row justify="center">
       <div class="mt-10">
         <v-btn small color="primary" @click="sentPost">Generate</v-btn>
-        <v-btn small color="red" class="ml-2" @click="sentGet">Test GET</v-btn>
       </div>
     </v-row>
   </v-container>
@@ -73,13 +67,6 @@ export default {
         .then((response) => {
           console.log(response.data);
           this.$emit("sentData", response.data);
-        });
-    },
-    sentGet() {
-      axios
-        .get("https://dig-app-server.herokuapp.com/test")
-        .then((response) => {
-          console.log(response);
         });
     },
     updateValues(updatedValues) {
