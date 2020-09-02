@@ -5,7 +5,7 @@
         <v-text-field label="Value" outlined v-model="inputValue" v-on:keyup.enter="addValue"></v-text-field>
       </v-col>
       <v-col cols="5" md="1" ml="1" lg="1">
-        <v-text-field label="Search" outlined clearable v-model="searchValue" ></v-text-field>
+        <v-text-field label="Search" outlined clearable v-model="searchValue"></v-text-field>
       </v-col>
     </v-row>
 
@@ -24,8 +24,8 @@
       </v-col>
     </v-row>
     <!-- <v-row justify="center"> -->
-      <!-- <v-btn small color="red" class="ml-2" @click="addValue">Add Value</v-btn>
-      <v-btn small color="red" class="ml-2" @click="resetValues">RESET</v-btn> -->
+    <!-- <v-btn small color="red" class="ml-2" @click="addValue">Add Value</v-btn>
+    <v-btn small color="red" class="ml-2" @click="resetValues">RESET</v-btn>-->
     <!-- </v-row> -->
   </v-container>
 </template>
@@ -60,14 +60,17 @@ export default {
     resetValues() {
       this.inputValues = [];
       this.$emit("updateValues", this.inputValues);
-    }
+    },
   },
   computed: {
     searchValues() {
-      return this.inputValues.filter(input => {
-        return input.value.match(this.searchValue)
-      })
-    }
-  }
+      if (this.searchValue != null) {
+        return this.inputValues.filter((input) => {
+          return input.value.match(this.searchValue);
+        });
+      }
+      return this.inputValues
+    },
+  },
 };
 </script>
