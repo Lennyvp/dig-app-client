@@ -2,16 +2,16 @@
   <v-container fluid>
     <v-card elevation="5" class="mx-auto">
       <v-card-title>Inputs</v-card-title>
-      <v-row justify="center">
-        <v-col sm="6" md="1">
+      <v-row justify="center" class="mx-auto">
+        <v-col cols="4" md="3" ml="3" lg="1">
           <v-text-field label="Size" outlined v-model="size" clearable hint="Size of divided group"></v-text-field>
         </v-col>
 
-        <v-col sm="6" md="1">
+        <v-col cols="4" md="3" ml="3" lg="1">
           <v-text-field label="Groups" outlined v-model="groups" clearable hint="Amount of groups"></v-text-field>
         </v-col>
 
-        <v-col cols="5" sm="6" md="1">
+        <v-col cols="4" md="4" ml="3" lg="1">
           <v-text-field
             label="Deviation"
             outlined
@@ -22,12 +22,12 @@
         </v-col>
       </v-row>
     </v-card>
-    
-    <InputValues :inputValues="inputValues" v-on:updateValues="updateValues(event)" />
+
+    <InputValues class="my-auto" :inputValues="inputValues" v-on:updateValues="updateValues(event)" />
 
     <v-row justify="center">
-      <div class="mt-10">
-        <v-btn small color="primary" @click="sentPost">Generate</v-btn>
+      <div>
+        <v-btn color="primary" @click="sentPost">Generate</v-btn>
       </div>
     </v-row>
   </v-container>

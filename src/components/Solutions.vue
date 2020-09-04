@@ -5,7 +5,7 @@
         <v-col v-for="sol in solution" :key="sol.id">{{sol}}</v-col>
       </v-row>-->
 
-      <v-data-table :headers="headers" :items="items" class="elevation-1"></v-data-table>
+      <v-data-table :headers="headers" :items="items" v-model="selected" :single-select="singleSelect" item-key="id" show-select class="elevation-1"></v-data-table>
     </div>
     <div v-else>The Array is Empty</div>
   </v-container>
@@ -16,18 +16,14 @@ export default {
   name: "Solutions",
   props: ["solutions"],
   data: () => ({
-    headers: [
-      {
-        text: "id",
-        align: "start",
-        sortable: false,
-        value: "name",
-      },
-    ],
+    headers: [],
     id: 0,
     items: [],
+    selected: [],
     baseText: "Group ",
     baseValue: "value",
+    singleSelect: false,
+    idItem: 0,
   }),
 
   created() {},
@@ -42,8 +38,8 @@ export default {
         //   },
         // ],
         this.headers = []
-        this.id = 0;
-        this.items = [];
+        this.id = 0
+        this.items = []
         solution.forEach(() => {
           let header = {};
           header.text = this.baseText + (this.id + 1);
@@ -56,7 +52,10 @@ export default {
     },
     initialize() {
       this.solutions.forEach((solution) => {
-        let item = {}
+        let item = {id: this.idItem++}
+        // this.idItem++
+        // let item = {}
+        // item.id = this.idItem++
         this.headers.forEach((header) => {
           item[header.value] = solution[header.id];
         });

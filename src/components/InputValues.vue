@@ -1,10 +1,10 @@
 <template>
   <v-container>
     <v-row justify="center">
-      <v-col cols="5" md="1" ml="1" lg="1">
-        <v-text-field label="Value" outlined v-model="inputValue" v-on:keyup.enter="addValue"></v-text-field>
+      <v-col cols="6" md="4" ml="3" lg="1">
+        <v-text-field label="Value" :rules="rules" outlined v-model="inputValue" v-on:keyup.enter="addValue"></v-text-field>
       </v-col>
-      <v-col cols="5" md="1" ml="1" lg="1">
+      <v-col cols="6" md="4" ml="3" lg="1">
         <v-text-field label="Search" outlined clearable v-model="searchValue"></v-text-field>
       </v-col>
     </v-row>
@@ -39,6 +39,14 @@ export default {
     id: 0,
     inputValue: null,
     searchValue: null,
+    rules: [
+      value => !!value || 'Required.',
+      value => {
+          // const pattern = /^-?[1-9]\\d*(\\.\\d{1,2})?$/ 
+          const pattern = /^\d*\.?\d*$/
+          return pattern.test(value) || 'Only number.'
+        },
+    ]
   }),
   components: {
     ChipInputValue,
